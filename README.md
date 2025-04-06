@@ -108,6 +108,8 @@ $ mau deploy
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
+Additionally, you can deploy your application on other platforms by leveraging the Docker Compose production file included in this repository. This provides a flexible, containerized solution for managing your deployment environment.
+
 ## Stay in touch
 
 - Author - [Morosan Andrei](https://www.linkedin.com/in/andrei-moro%C8%99an-ab171a179/)
