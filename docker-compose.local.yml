@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: nestjs_app_local
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "${PORT}:${PORT}"
+    restart: unless-stopped
