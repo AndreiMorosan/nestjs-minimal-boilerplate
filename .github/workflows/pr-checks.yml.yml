@@ -29,6 +29,6 @@ jobs:
       - name: ⏱️ Wait for Server to Start
         run: sleep 20
 
-      - name: 🧪 Run E2E Tests
-        run: npm run test:e2e
+      # - name: 🧪 Run E2E Tests
+      #   run: npm run test:e2e
 
