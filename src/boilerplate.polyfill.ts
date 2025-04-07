@@ -8,7 +8,7 @@ import { PageDto } from './common/dto/page.dto';
 
 declare global {
   interface Array<T> {
-    toDtos<Entity extends { toDto: (options?: unknown) => Dto }, Dto>(
+    toDtos<Dto>(
       options?: unknown,
     ): Dto[];
     toPageDto(pageMetaDto: PageMetaDto, options?: unknown): PageDto<T>;
@@ -16,7 +16,6 @@ declare global {
 }
 
 declare module 'typeorm' {
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   interface SelectQueryBuilder<Entity> {
     searchByString(
       q: string,

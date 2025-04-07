@@ -161,7 +161,7 @@ export function PhoneNumberSerializer(): PropertyDecorator {
     try {
       // Optionally, provide a default country code (e.g., 'RO' for Romania)
       return parsePhoneNumberWithError(value as string).number;
-    } catch (error) {
+    } catch {
       // If parsing fails, you can either return the original value or throw an error.
       return value;
     }
