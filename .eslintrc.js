@@ -1,8 +1,11 @@
-module.exports = {
+import path from "path";
+import { URL } from "url";
+
+export default {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    tsconfigRootDir: __dirname,
+    tsconfigRootDir: path.dirname(new URL(import.meta.url).pathname),
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint/eslint-plugin'],

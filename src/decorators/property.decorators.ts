@@ -5,7 +5,7 @@ import { getVariableName } from '../common/utils';
 export function ApiBooleanProperty(
   options: Omit<ApiPropertyOptions, 'type'> = {},
 ): PropertyDecorator {
-  //@ts-ignore
+  //@ts-expect-error Type mismatch due to dynamic property merging
   return ApiProperty({ type: Boolean, ...options });
 }
 
@@ -19,7 +19,7 @@ export function ApiUUIDProperty(
   options: Omit<ApiPropertyOptions, 'type' | 'format'> &
     Partial<{ each: boolean }> = {},
 ): PropertyDecorator {
-  //@ts-ignore
+  //@ts-expect-error Dynamic property merging causes a type mismatch
   return ApiProperty({
     type: options.each ? [String] : String,
     format: 'uuid',
@@ -41,7 +41,7 @@ export function ApiEnumProperty<TEnum>(
 ): PropertyDecorator {
   const enumValue = getEnum() as any;
 
-  //@ts-ignore
+  //@ts-expect-error Type mismatch due to dynamic property merging and enum handling
   return ApiProperty({
     type: enumValue,
     enum: enumValue,

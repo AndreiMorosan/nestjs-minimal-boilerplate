@@ -18,7 +18,7 @@ export class AuthService {
     private jwtService: JwtService,
     private configService: ApiConfigService,
     private userService: UserService,
-  ) { }
+  ) {}
 
   async createAccessToken(data: {
     role: RoleType;
@@ -34,7 +34,10 @@ export class AuthService {
     });
   }
 
-  async createRefreshToken(data: { role: RoleType; userId: Uuid }): Promise<TokenPayloadDto> {
+  async createRefreshToken(data: {
+    role: RoleType;
+    userId: Uuid;
+  }): Promise<TokenPayloadDto> {
     return new TokenPayloadDto({
       expiresIn: this.configService.authConfig.refreshTokenExpirationTime,
       accessToken: await this.jwtService.signAsync({
@@ -45,7 +48,9 @@ export class AuthService {
     });
   }
 
-  async validateRefreshToken(refreshToken: string): Promise<{ userId: string; role: RoleType }> {
+  async validateRefreshToken(
+    refreshToken: string,
+  ): Promise<{ userId: string; role: RoleType }> {
     try {
       const payload = await this.jwtService.verifyAsync(refreshToken, {
         secret: this.configService.authConfig.publicKey,
@@ -64,10 +69,10 @@ export class AuthService {
         userId: payload.userId,
         role: payload.role,
       };
-    } catch (error) {
+    } catch {
       throw new UnauthorizedException('Invalid or expired refresh token');
     }
-  };
+  }
 
   async validateUser(userLoginDto: UserLoginDto): Promise<UserEntity> {
     const user = await this.userService.findOne({
@@ -78,7 +83,10 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials');
     }
 
-    const isPasswordValid = await validateHash(userLoginDto.password, user.password);
+    const isPasswordValid = await validateHash(
+      userLoginDto.password,
+      user.password,
+    );
 
     if (!isPasswordValid) {
       throw new UserNotFoundException();

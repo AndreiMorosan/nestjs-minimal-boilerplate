@@ -11,6 +11,7 @@
     ".hygen.js",
     ".hygen",
     "node_modules",
-    "dist"
+    "dist",
+    ".eslintrc.js"
   ]
 }

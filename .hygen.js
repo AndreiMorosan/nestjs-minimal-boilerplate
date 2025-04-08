@@ -1,5 +1,8 @@
-module.exports = {
-  templates: `${__dirname}/.hygen`,
+import path from "path";
+import { URL } from "url";
+
+export default {
+  templates: `${path.dirname(new URL(import.meta.url).pathname)}/.hygen`,
   helpers: {
     ControllerName(name) {
       return `${this.ClassName(name)}Controller`;

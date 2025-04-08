@@ -77,7 +77,7 @@ export function NumberField(
   }
 
   if (options.swagger !== false) {
-    //@ts-ignore
+    //@ts-expect-error: ApiProperty does not accept 'type' as a valid property in its type definition, but it is required here for Swagger integration.
     decorators.push(ApiProperty({ type: Number, ...options }));
   }
 
@@ -129,7 +129,7 @@ export function StringField(
 
   if (options.swagger !== false) {
     decorators.push(
-      //@ts-ignore
+      //@ts-expect-error: ApiProperty does not accept 'type' or 'isArray' in its type definition, but they are required here for Swagger integration.
       ApiProperty({ type: String, ...options, isArray: options.each }),
     );
   }
@@ -200,7 +200,7 @@ export function BooleanField(
   }
 
   if (options.swagger !== false) {
-    //@ts-ignore
+    //@ts-expect-error: ApiProperty does not accept 'type' as a valid property in its type definition, but it is required here for Swagger integration.
     decorators.push(ApiProperty({ type: Boolean, ...options }));
   }
 
@@ -233,7 +233,7 @@ export function TmpKeyField(
 
   if (options.swagger !== false) {
     decorators.push(
-      //@ts-ignore
+      //@ts-expect-error: ApiProperty does not accept 'type' as a valid property in its type definition, but it is required here for Swagger integration.
       ApiProperty({ type: String, ...options, isArray: options.each }),
     );
   }
@@ -251,13 +251,11 @@ export function TmpKeyFieldOptional(
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function EnumField<TEnum extends object>(
   getEnum: () => TEnum,
   options: Omit<ApiPropertyOptions, 'type' | 'enum' | 'enumName' | 'isArray'> &
     IEnumFieldOptions = {},
 ): PropertyDecorator {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   const enumValue = getEnum();
   const decorators = [IsEnum(enumValue, { each: options.each })];
 
@@ -273,7 +271,6 @@ export function EnumField<TEnum extends object>(
 
   if (options.swagger !== false) {
     decorators.push(
-      //@ts-ignore
       ApiEnumProperty(getEnum, { ...options, isArray: options.each }),
     );
   }
@@ -281,7 +278,6 @@ export function EnumField<TEnum extends object>(
   return applyDecorators(...decorators);
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function ClassField<TClass extends Constructor>(
   getClass: () => TClass,
   options: Omit<ApiPropertyOptions, 'type'> & IClassFieldOptions = {},
@@ -305,7 +301,7 @@ export function ClassField<TClass extends Constructor>(
 
   if (options.swagger !== false) {
     decorators.push(
-      //@ts-ignore
+      //@ts-expect-error: ApiProperty does not accept 'type' as a function in its type definition, but it is required here for Swagger integration.
       ApiProperty({
         type: () => classValue,
         ...options,
@@ -320,7 +316,6 @@ export function ClassField<TClass extends Constructor>(
   return applyDecorators(...decorators);
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function EnumFieldOptional<TEnum extends object>(
   getEnum: () => TEnum,
   options: Omit<ApiPropertyOptions, 'type' | 'required' | 'enum' | 'enumName'> &
@@ -332,7 +327,6 @@ export function EnumFieldOptional<TEnum extends object>(
   );
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export function ClassFieldOptional<TClass extends Constructor>(
   getClass: () => TClass,
   options: Omit<ApiPropertyOptions, 'type' | 'required'> &
@@ -359,7 +353,7 @@ export function EmailField(
   }
 
   if (options.swagger !== false) {
-    //@ts-ignore
+    //@ts-expect-error: ApiProperty does not accept 'type' as a valid property in its type definition, but it is required here for Swagger integration.
     decorators.push(ApiProperty({ type: String, ...options }));
   }
 
@@ -387,7 +381,7 @@ export function PhoneField(
   }
 
   if (options.swagger !== false) {
-    //@ts-ignore
+    //@ts-expect-error: ApiProperty does not accept 'type' as a valid property in its type definition, but it is required here for Swagger integration.
     decorators.push(ApiProperty({ type: String, ...options }));
   }
 
@@ -473,7 +467,7 @@ export function DateField(
   }
 
   if (options.swagger !== false) {
-    //@ts-ignore
+    //@ts-expect-error: ApiProperty does not accept 'type' as a valid property in its type definition, but it is required here for Swagger integration.
     decorators.push(ApiProperty({ type: Date, ...options }));
   }
 
